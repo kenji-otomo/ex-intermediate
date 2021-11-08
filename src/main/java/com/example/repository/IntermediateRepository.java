@@ -24,7 +24,7 @@ public class IntermediateRepository {
 	
 	public List<Team> showList() {
 		
-		String sql = "SELECT id, league_name, headquarters, inauguration, history "
+		String sql = "SELECT id, league_name, team_name,headquarters, inauguration, history "
 				+ " FROM teams "
 				+ " ORDER BY inauguration;";
 		
@@ -35,7 +35,7 @@ public class IntermediateRepository {
 	
 	public Team showDetail(Integer id) {
 		
-		String sql = "SELECT id, league_name, headquarters, inauguration, history "
+		String sql = "SELECT id, league_name, team_name ,headquarters, inauguration, history "
 				+ " FROM teams "
 				+ " WHERE id = :id;";
 		

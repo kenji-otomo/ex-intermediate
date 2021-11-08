@@ -6,18 +6,23 @@
 </head>
 <body>
 <h3>球団名</h3>
-<div th:text="${}"></div>
+<div th:text="${team.teamName}"></div>
 
 <h3>本拠地</h3>
-<div th:text="${}"></div>
+<div th:text="${team.headquarters}"></div>
 
 <h3>発足</h3>
-<div th:text="${}"></div>
+<div th:text="${team.inauguration}"></div>
 
 <h3>歴史</h3>
-<div th:text="${}"></div>
+<th:block th:if="${team.history}">
+    <th:block th:each="str, stat : ${team.history.split('\r\n|\r|\n', -1)}">
+        <th:block th:text="${str}"/>
+        <br th:if="${!stat.last}"/>
+    </th:block>
+</th:block>
 
-<form th:action="@{/}">
+<form th:action="@{/inter}">
 <button>戻る</button>
 </form>
 
