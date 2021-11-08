@@ -32,5 +32,14 @@ public class HotelRepository {
 		
 		return hotelList;
 	}
+	
+	public List<Hotel> findAll() {
+		String sql = "SELECT hotel_name,nearest_station,price "
+				+ " FROM hotels ";
+				
+		List<Hotel>hotelList = template.query(sql, HOTEL_ROW_MAPPER);
+		
+		return hotelList;
+	}
 
 }

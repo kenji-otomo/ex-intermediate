@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +33,14 @@ public class HotelController {
 
 	@RequestMapping("/search")
 	public String search(Model model,HotelForm form) {
+		List<Hotel>hotelList = new ArrayList<>();
 		
-		List<Hotel>hotelList = service.searchByLessThanPrice(form.getPrice());
+		if (form.getPrice() == null) {
+			hotelList = service.findAll();
+		}else {
+			hotelList = service.searchByLessThanPrice(form.getPrice());
+		}
+		
 		
 		model.addAttribute("hotelList", hotelList);
 		
