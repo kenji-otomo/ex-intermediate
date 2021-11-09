@@ -6,25 +6,31 @@
 </head>
 <body>
 <h3>衣類検索</h3>
-<form th:action="@{/hotel/search}" method="post" th:object="${hotelForm}">
-<div th:errors="*{price}"></div>
-<input type="text" th:field="*{price}">円以下<br>
+<form th:action="@{/cloth/find}" method="post" th:object="${clothForm}" >
+<div style=display:flex>
+<div th:each="gender:${genderList}">
+<input type="radio" th:value="${gender.key}" th:text="${gender.value}" name="gender"><br>
+</div>
+<select name="color">
+<option th:each="color:${colorList}" th:value="${color}" th:text="${color}" ></option>
+</select>
+</div>
 <button>検索</button>
 </form>
 <br>
 <div >
-<table th:each="hotel:${hotelList}" border=1>
+<table th:each="result:${resultList}" border=1>
 <tr>
-<td>ホテル名</td>
-<td th:text="*{hotel.hotelName}"></td>
+<td>ジャンル</td>
+<td th:text="*{result.genre}"></td>
 </tr>
 <tr>
-<td>最寄り駅</td>
-<td th:text="*{hotel.nearestStation}"></td>
+<td>サイズ</td>
+<td th:text="*{result.size}"></td>
 </tr>
 <tr>
 <td>価格</td>
-<td th:text="*{hotel.price}"></td>
+<td th:text="*{result.price}"></td>
 </tr>
 
 </table>

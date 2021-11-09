@@ -23,7 +23,7 @@ public class ClothRepository {
 	
 	public List<Cloth> findByGenderAndColor(Integer gender,String color) {
 		
-		String sql = "SELECT genre,size,price FROM clothes "
+		String sql = "SELECT id,category,genre,size,price FROM clothes "
 				+ " WHERE gender = :gender AND color = :color "
 				+ " ORDER BY id;";
 		

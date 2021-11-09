@@ -1,6 +1,9 @@
 package com.example.controller;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +26,24 @@ public class ClothController {
 	ClothService service;
 	
 	@RequestMapping("")
-	public String index() {
+	public String index(Model model) {
+		
+Map<Integer,String>genderList = new LinkedHashMap<>();
+		
+		genderList.put(0, "男性");
+		genderList.put(1, "女性");
+		
+		model.addAttribute("genderList", genderList);
+		
+		List<String>colorList = new ArrayList<>();
+		
+		colorList.add("赤");
+		colorList.add("青");
+		colorList.add("白");
+		colorList.add("黄");
+		
+		model.addAttribute("colorList", colorList);
+		
 		return "clothes";
 	}
 	
@@ -34,6 +54,6 @@ public class ClothController {
 		
 		model.addAttribute("resultList", list);
 		
-		return index();
+		return index(model);
 	}
 }

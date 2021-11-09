@@ -1,32 +1,25 @@
 package com.example.form;
 
-import java.util.List;
 
 public class ClothForm {
 	
-	private List<Integer> genderList; 
-	
-	private List<Integer> colorList;
-
-	public List<Integer> getGenderList() {
-		return genderList;
+	private Integer gender;
+	private String color;
+	public Integer getGender() {
+		return gender;
 	}
-
-	public void setGenderList(List<Integer> genderList) {
-		this.genderList = genderList;
+	public void setGender(Integer gender) {
+		this.gender = gender;
 	}
-
-	public List<Integer> getColorList() {
-		return colorList;
+	public String getColor() {
+		return color;
 	}
-
-	public void setColorList(List<Integer> colorList) {
-		this.colorList = colorList;
+	public void setColor(String color) {
+		this.color = color;
 	}
-
 	@Override
 	public String toString() {
-		return "ClothForm [genderList=" + genderList + ", colorList=" + colorList + "]";
+		return "ClothForm [gender=" + gender + ", color=" + color + "]";
 	}
 	
 	
