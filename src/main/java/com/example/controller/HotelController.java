@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -32,7 +34,16 @@ public class HotelController {
 	}
 
 	@RequestMapping("/search")
-	public String search(Model model,HotelForm form) {
+	public String search(Model model,
+			@Validated HotelForm form,
+			BindingResult result
+			){
+
+		if (result.hasErrors()) {
+			return index();
+		}
+		
+		
 		List<Hotel>hotelList = new ArrayList<>();
 		
 		if (form.getPrice() == null) {
@@ -41,9 +52,10 @@ public class HotelController {
 			hotelList = service.searchByLessThanPrice(form.getPrice());
 		}
 		
-		
 		model.addAttribute("hotelList", hotelList);
 		
 		return "hotelsearch";
 	}
 }
+
+/////重い処理はサービスで行うことが理想なため、サービスでif文を使い、リポジトリを使い分ける処理を書く
